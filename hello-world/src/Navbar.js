@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ThemeContext } from "./contetxs/ThemeContextProvider";
 
 class Navbar extends Component {
-  static contextType = ThemeContext;
+  // static contextType = ThemeContext;
   render() {
     const { isLightTheme, light, dark } = this.context;
     const theme = isLightTheme ? light : dark;
@@ -18,5 +18,7 @@ class Navbar extends Component {
     );
   }
 }
+
+Navbar.contextType = ThemeContext;
 
 export default Navbar;
