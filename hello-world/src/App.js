@@ -1,24 +1,59 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import Counter from "./Counter";
+import Navbar from "./Navbar";
+import Booklist from "./Booklist";
+import ThemeContextProvider from "./contetxs/ThemeContextProvider";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Boss to React world!</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mount: true,
+      ignoreProps: 0,
+      seed: 40,
+      showErrorComponent: false,
+    };
+
+    this.mountCounter = () => this.setState({ mount: true });
+    this.unMountCounter = () => this.setState({ mount: false });
+    this.ignoreProps = () => this.setState({ ignoreProps: Math.random() });
+    this.seedGenarator = () =>
+      this.setState({ seed: Number.parseInt(Math.random() * 100) });
+    this.toggleError = () =>
+      this.setState({ showErrorComponent: !this.state.showErrorComponent });
+  }
+  render() {
+    return (
+      <ThemeContextProvider>
+        <Navbar />
+        <Booklist />
+      </ThemeContextProvider>
+
+      // {
+      //<div>
+      //   <button onClick={this.mountCounter} disabled={this.state.mount}>
+      //     Mount
+      //   </button>
+      //   <button onClick={this.unMountCounter} disabled={!this.state.mount}>
+      //     UnMount
+      //   </button>
+      //   <button onClick={this.ignoreProps}>Should Update</button>
+      //   <button onClick={this.seedGenarator}>Generate Seed</button>
+      //   <button onClick={this.toggleError}>Toggle Error</button>
+      //   {this.state.mount ? (
+      //     <Counter
+      //       ignoreProps={this.state.ignoreProps}
+      //       seed={this.state.seed}
+      //       showErrorComponent={this.state.showErrorComponent}
+      //     />
+      //   ) : null}
+
+      //</div>
+
+      // }
+    );
+  }
 }
 
 export default App;
