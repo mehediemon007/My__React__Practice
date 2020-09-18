@@ -3,6 +3,8 @@ import Counter from "./Counter";
 import Navbar from "./Navbar";
 import Booklist from "./Booklist";
 import ThemeContextProvider from "./contetxs/ThemeContextProvider";
+import ToggleTheme from "./ToggleTheme";
+import AuthContextProvider from "./contetxs/AuthContextProvider";
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +28,11 @@ class App extends Component {
   render() {
     return (
       <ThemeContextProvider>
-        <Navbar />
-        <Booklist />
+        <AuthContextProvider>
+          <Navbar />
+          <Booklist />
+          <ToggleTheme />
+        </AuthContextProvider>
       </ThemeContextProvider>
 
       // {
